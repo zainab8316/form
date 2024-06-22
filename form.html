@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+      
+      .div_1{
+        background-color: silver;
+        font-style: oblique;
+      }
+      .div_2{
+        font-size:x-large ;
+      }
+      .div_3{
+        font-size: xx-large;
+      }
+      .div_4{
+        font-size: x-large;
+        color: black;
+      }
+      .div_5{
+        background-color: silver;
+      }
+
+        
+    </style>
+</head>
+
+<body>
+    <center>
+    <form id="tweetForm">
+        <label for="tweetImage"> Image URL:</label>
+        <input type="text" id="tweetImage" name="tweetImage" required><br><br>
+        <label for="tweetDescription">Tweet Description:</label>
+        <textarea id="tweetDescription" name="tweetDescription" required></textarea><br><br>
+        <button type="button" id="saveButton">Submit</button>
+    </form>
+</center>
+
+
+
+<br><br>
+
+    <div class="div_1">
+      <form class="contact_form">
+        <!-- Name Input -->
+        <div class="div_3">
+          <fieldset>
+            <legend>Contact details</legend>
+       
+        <div class="contact_name_input">
+          <label for="name">Name:</label>
+          <input type="text" name="name" placeholder="Enter your name" required />
+        </div>
+  
+        <!-- Email Input -->
+        
+        <div class="contact_email_input">
+          <label for="">Email;</label>
+          <input type="email" placeholder="Enter your Email" />
+        </div>
+        <!-- Password Input -->
+        <div class="contact_password_input">
+          <label for="">Password:</label>
+          <input type="password" name="password" placeholder="Enter your password" />
+        </div>
+  
+        <!-- Date Input -->
+        <div>
+          <input type="date" />
+        </div>
+      
+        
+        <!-- Datetime -->
+        <div>
+          <input type="datetime-local" />
+        </div>
+  
+        <div>
+  <!--gender input-->
+        <div><input type="radio" name="gender" id="" /> Male</div>
+        <div><input type="radio" name="gender" id="" />Female</div>
+        <div>
+        </div>
+          <textarea name="" id="" cols="30" rows="8" placeholder="Message"></textarea>
+        </div>
+        </div>   
+       
+  <!--Submission-->
+        <button type="submit">Register</button>
+        <hr>
+        <!--footer section-->
+        <div class="--footer-section">
+          <center>
+            <h5>@copyright 2024</h5>
+            <address>lahore</address>
+            </center>
+        </div>
+     
+    </div>
+  </div>
+</fieldset>
+  </center>
+
+</form>
+
+
+</body>
+
+<script>
+    const btn = document.getElementById("saveButton");
+    btn.addEventListener('click', () => {
+        async function save() {
+            const textImage = document.getElementById("tweetImage").value
+            const textDescription = document.getElementById("tweetDescription").value
+            const api = await fetch('https://p2pclouds.up.railway.app/v1/learn/tweet/save',
+             {
+                method: "POST",
+                headers: {
+                    'Content-Type': "application/json",
+                },
+                body: JSON.stringify({
+                    tweetImage: tweetImage,
+                    tweetDescription: tweetDescription
+                })
+            })
+            const res = await api.json();   KeyboardEvent
+            if (res.status === 'success') {
+                alert("your form submit");
+                console.log(res);
+            }
+            else {
+                alert("error while fetching")
+            }
+        }
+        save()
+    })
+</script>
+</div>
+
+</html>
